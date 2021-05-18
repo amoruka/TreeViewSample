@@ -22,10 +22,18 @@ namespace TreeViewSample
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
 
-            // Create test data
-            var categories = new List<Category>
+            using var context = new AppContext();
+
+            context.Categories.AddRange(CreateTestData());
+
+            context.SaveChanges();
+        }
+
+        private List<Category> CreateTestData()
+        {
+            return new List<Category>
             {
                 new Category
                 {
