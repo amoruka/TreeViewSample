@@ -29,6 +29,10 @@ namespace TreeViewSample
             context.Categories.AddRange(CreateTestData());
 
             context.SaveChanges();
+
+            var categories = context.GetCategoriesWithoutParent().Select(x => new CategoryViewModel(x)).ToList();
+
+            DataContext = new MainWindowViewModel(categories);
         }
 
         private List<Category> CreateTestData()

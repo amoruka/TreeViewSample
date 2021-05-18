@@ -7,5 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <!--TreeView is binding to 'Categories' property of MainWindow DataContext-->
+        <TreeView x:Name="treeView" ItemsSource="{Binding Categories}">
+            <TreeView.Resources>
+                <HierarchicalDataTemplate DataType="{x:Type local:CategoryViewModel}" ItemsSource="{Binding Children}">
+                    <TextBlock Text="{Binding Name}" />
+                </HierarchicalDataTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type local:ProductViewModel}">
+                    <TextBlock Text="{Binding Name}" />
+                </HierarchicalDataTemplate>
+            </TreeView.Resources>
+        </TreeView>
     </Grid>
 </Window>
